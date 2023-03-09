@@ -38,6 +38,9 @@ namespace vRatServer.Classes
             while (_isRunning)
             {
                 Socket client = _server.AcceptSocket();
+                client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
+                client.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.TcpKeepAliveTime, 30);
+                client.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.TcpKeepAliveInterval, 30);
                 clients.Add(client);
                 new Thread(new ParameterizedThreadStart(HandleClient)).Start(client);
             }
