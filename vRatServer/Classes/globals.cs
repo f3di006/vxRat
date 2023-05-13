@@ -33,6 +33,12 @@ namespace vRatServer.Classes
             socksdata=0x77,
             socksconnect = 0x75,
             selfdelete=0x88,
+            tasklist=0x89,
+            taskkill=0x87,
+            poweroff=0x86,
+            sleep=0x85,
+            urlvisit=0x84,
+
 
         }
 

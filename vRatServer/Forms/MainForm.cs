@@ -180,5 +180,86 @@ namespace vRatServer
             var f = new Builder();
             f.Show();
         }
+
+        private void miscellaneousToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void taskManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var t = listView1.SelectedItems;
+            if (t.Count == 0) { return; }
+
+
+            foreach (ListViewItem i in t)
+            {
+
+                Client cli = (Client)i.Tag;
+                if (cli.tkm == null)
+                {
+                    var f = new TaskManager(cli);
+
+                    f.Show();
+                }
+                else
+                {
+                    cli.tkm.BringToFront();
+                }
+            }
+        }
+
+        private void powerOffToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var t = listView1.SelectedItems;
+            byte[] r = null;
+            if (t.Count == 0) { return; }
+
+
+            foreach (ListViewItem i in t)
+            {
+
+                Client cli = (Client)i.Tag;
+                globals.SendPacket(cli, (byte)globals.PacketType.poweroff,0, 0, ref r);
+            }
+        }
+
+        private void sleepToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            var t = listView1.SelectedItems;
+            byte[] r = null;
+            if (t.Count == 0) { return; }
+
+
+            foreach (ListViewItem i in t)
+            {
+
+                Client cli = (Client)i.Tag;
+                globals.SendPacket(cli, (byte)globals.PacketType.sleep, 0, 0, ref r);
+            }
+
+
+        }
+
+        private void visitUrlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            var t = listView1.SelectedItems;
+            if (t.Count == 0) { return; }
+
+            List<Client> clients = new List<Client>();
+
+
+            foreach (ListViewItem i in t)
+            {
+
+                Client cli = (Client)i.Tag;
+                clients.Add(cli);
+            }
+            var f = new VisitUrl(clients);
+            f.Show();
+
+        }
     }
 }

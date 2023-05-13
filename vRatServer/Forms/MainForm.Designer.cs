@@ -45,6 +45,12 @@ namespace vRatServer
             this.reverseProxyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.miscellaneousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.taskManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.powerOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sleepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visitUrlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downloaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -117,9 +123,10 @@ namespace vRatServer
             this.reverseShellToolStripMenuItem,
             this.reverseProxyToolStripMenuItem,
             this.disconnectToolStripMenuItem,
-            this.uninstallToolStripMenuItem});
+            this.uninstallToolStripMenuItem,
+            this.miscellaneousToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 208);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 242);
             // 
             // remoteDesktopToolStripMenuItem
             // 
@@ -168,6 +175,54 @@ namespace vRatServer
             this.uninstallToolStripMenuItem.Size = new System.Drawing.Size(172, 34);
             this.uninstallToolStripMenuItem.Text = "Uninstall";
             this.uninstallToolStripMenuItem.Click += new System.EventHandler(this.uninstallToolStripMenuItem_Click);
+            // 
+            // miscellaneousToolStripMenuItem
+            // 
+            this.miscellaneousToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.taskManagerToolStripMenuItem,
+            this.powerOffToolStripMenuItem,
+            this.sleepToolStripMenuItem,
+            this.visitUrlToolStripMenuItem,
+            this.downloaderToolStripMenuItem});
+            this.miscellaneousToolStripMenuItem.Image = global::vRatServer.Properties.Resources._2644379;
+            this.miscellaneousToolStripMenuItem.Name = "miscellaneousToolStripMenuItem";
+            this.miscellaneousToolStripMenuItem.Size = new System.Drawing.Size(172, 34);
+            this.miscellaneousToolStripMenuItem.Text = "Miscellaneous";
+            this.miscellaneousToolStripMenuItem.Click += new System.EventHandler(this.miscellaneousToolStripMenuItem_Click);
+            // 
+            // taskManagerToolStripMenuItem
+            // 
+            this.taskManagerToolStripMenuItem.Name = "taskManagerToolStripMenuItem";
+            this.taskManagerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.taskManagerToolStripMenuItem.Text = "Task Manager";
+            this.taskManagerToolStripMenuItem.Click += new System.EventHandler(this.taskManagerToolStripMenuItem_Click);
+            // 
+            // powerOffToolStripMenuItem
+            // 
+            this.powerOffToolStripMenuItem.Name = "powerOffToolStripMenuItem";
+            this.powerOffToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.powerOffToolStripMenuItem.Text = "Power Off";
+            this.powerOffToolStripMenuItem.Click += new System.EventHandler(this.powerOffToolStripMenuItem_Click);
+            // 
+            // sleepToolStripMenuItem
+            // 
+            this.sleepToolStripMenuItem.Name = "sleepToolStripMenuItem";
+            this.sleepToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sleepToolStripMenuItem.Text = "Sleep";
+            this.sleepToolStripMenuItem.Click += new System.EventHandler(this.sleepToolStripMenuItem_Click);
+            // 
+            // visitUrlToolStripMenuItem
+            // 
+            this.visitUrlToolStripMenuItem.Name = "visitUrlToolStripMenuItem";
+            this.visitUrlToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.visitUrlToolStripMenuItem.Text = "Visit Url";
+            this.visitUrlToolStripMenuItem.Click += new System.EventHandler(this.visitUrlToolStripMenuItem_Click);
+            // 
+            // downloaderToolStripMenuItem
+            // 
+            this.downloaderToolStripMenuItem.Name = "downloaderToolStripMenuItem";
+            this.downloaderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.downloaderToolStripMenuItem.Text = "Downloader";
             // 
             // statusStrip1
             // 
@@ -230,7 +285,7 @@ namespace vRatServer
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "vxRat v1.0";
+            this.Text = "vxRat v1.1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.contextMenuStrip1.ResumeLayout(false);
@@ -265,6 +320,12 @@ namespace vRatServer
         private System.Windows.Forms.ToolStripMenuItem disconnectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uninstallToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader isadmin;
+        private System.Windows.Forms.ToolStripMenuItem miscellaneousToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem taskManagerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem powerOffToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sleepToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visitUrlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem downloaderToolStripMenuItem;
     }
 }
 

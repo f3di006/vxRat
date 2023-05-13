@@ -1,0 +1,5 @@
+C:\Users\admin\source\repos\vRatServer\vRatServer\bin\Debug\netcoreapp3.1\publish\vRatServer.exe
+C:\Users\admin\source\repos\vRatServer\vRatServer\bin\Debug\netcoreapp3.1\publish\vRatServer.dll
+C:\Users\admin\source\repos\vRatServer\vRatServer\bin\Debug\netcoreapp3.1\publish\vRatServer.deps.json
+C:\Users\admin\source\repos\vRatServer\vRatServer\bin\Debug\netcoreapp3.1\publish\vRatServer.runtimeconfig.json
+C:\Users\admin\source\repos\vRatServer\vRatServer\bin\Debug\netcoreapp3.1\publish\vRatServer.pdb

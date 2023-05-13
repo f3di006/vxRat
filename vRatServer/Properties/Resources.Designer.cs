@@ -83,6 +83,16 @@ namespace vRatServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _2644379 {
+            get {
+                object obj = ResourceManager.GetObject("2644379", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _3641934 {
             get {
                 object obj = ResourceManager.GetObject("3641934", resourceCulture);

