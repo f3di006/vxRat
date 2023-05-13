@@ -60,6 +60,7 @@ namespace vRatServer.Forms
             this.ClientSize = new System.Drawing.Size(646, 121);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VisitUrl";
             this.Text = "VisitUrl";

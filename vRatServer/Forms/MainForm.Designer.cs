@@ -50,7 +50,6 @@ namespace vRatServer
             this.powerOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sleepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visitUrlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.downloaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -182,8 +181,7 @@ namespace vRatServer
             this.taskManagerToolStripMenuItem,
             this.powerOffToolStripMenuItem,
             this.sleepToolStripMenuItem,
-            this.visitUrlToolStripMenuItem,
-            this.downloaderToolStripMenuItem});
+            this.visitUrlToolStripMenuItem});
             this.miscellaneousToolStripMenuItem.Image = global::vRatServer.Properties.Resources._2644379;
             this.miscellaneousToolStripMenuItem.Name = "miscellaneousToolStripMenuItem";
             this.miscellaneousToolStripMenuItem.Size = new System.Drawing.Size(172, 34);
@@ -217,12 +215,6 @@ namespace vRatServer
             this.visitUrlToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.visitUrlToolStripMenuItem.Text = "Visit Url";
             this.visitUrlToolStripMenuItem.Click += new System.EventHandler(this.visitUrlToolStripMenuItem_Click);
-            // 
-            // downloaderToolStripMenuItem
-            // 
-            this.downloaderToolStripMenuItem.Name = "downloaderToolStripMenuItem";
-            this.downloaderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.downloaderToolStripMenuItem.Text = "Downloader";
             // 
             // statusStrip1
             // 
@@ -325,7 +317,6 @@ namespace vRatServer
         private System.Windows.Forms.ToolStripMenuItem powerOffToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sleepToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visitUrlToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem downloaderToolStripMenuItem;
     }
 }
 
