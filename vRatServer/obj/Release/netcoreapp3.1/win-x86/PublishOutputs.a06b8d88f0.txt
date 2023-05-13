@@ -1,2 +1,0 @@
-C:\Users\admin\source\repos\vRatServer\vRatServer\bin\Release\netcoreapp3.1\publish\vRatServer.pdb
-C:\Users\admin\source\repos\vRatServer\vRatServer\bin\Release\netcoreapp3.1\publish\vRatServer.exe
