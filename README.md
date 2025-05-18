@@ -7,8 +7,8 @@ Remote administration tool with native client
 ![picpw](https://github.com/user-attachments/assets/7b2f6a5a-44ff-490e-a7fb-82c688e80ed9)
 
 
+![vxo](https://github.com/user-attachments/assets/903e1815-aaf3-4b1b-ae98-07bceaffaa28)
 
-![1 1](https://github.com/f3di006/vxRat/assets/115483430/6377d7cb-d937-4c99-aef0-f058447817d3)
 
 ![Capture](https://user-images.githubusercontent.com/115483430/224003166-dae8b072-0774-4f46-aed9-d931f570e1f7.JPG)
 ![Capture2](https://user-images.githubusercontent.com/115483430/224003181-5ad034c2-3462-4b32-9727-79302d29d560.JPG)
