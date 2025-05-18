@@ -1,5 +1,12 @@
 # vxRat
 Remote administration tool with native client
+![picrdp](https://github.com/user-attachments/assets/1d98c4b6-3ea4-4951-96a2-da84ae526ec9)
+
+![taskwindow](https://github.com/user-attachments/assets/64a88a60-7eb3-4d8f-8a86-ae763eec47e8)
+
+![picpw](https://github.com/user-attachments/assets/7b2f6a5a-44ff-490e-a7fb-82c688e80ed9)
+
+
 
 ![1 1](https://github.com/f3di006/vxRat/assets/115483430/6377d7cb-d937-4c99-aef0-f058447817d3)
 
