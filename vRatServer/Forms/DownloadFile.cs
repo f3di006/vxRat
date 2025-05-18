@@ -31,9 +31,17 @@ namespace vRatServer.Forms
             this.intfilesize = ulong.Parse(this.filesize);
             this.path = path;
             this.client = client;
+
+            string filePath = Path.Combine(client.Name, filename);
+
+            if (!Directory.Exists(client.Name))
+            {
+                Directory.CreateDirectory(client.Name);
+            }
+
             try
             {
-                stream = new FileStream(filename, FileMode.Create, FileAccess.Write);
+                stream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
             }
             catch (Exception e) { MessageBox.Show(e.Message); }
             InitializeComponent();

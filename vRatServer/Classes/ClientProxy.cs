@@ -6,7 +6,7 @@ namespace vRatServer.Classes
 {
     class ClientProxy
     {
-        public ClientProxy(Client client, byte[] data, byte[] id)
+        public ClientProxy(Client client, ref byte[] data, byte[] id)
         {
             ulong iid = BitConverter.ToUInt64(id, 0);
             ProxyServer.m.WaitOne();

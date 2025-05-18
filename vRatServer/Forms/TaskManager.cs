@@ -36,6 +36,7 @@ namespace vRatServer.Forms
                 {
                     k.Text = line;
                 }
+                
                 else { k.SubItems.Add(line); }
 
                 i++;
@@ -54,7 +55,7 @@ namespace vRatServer.Forms
         private void TaskManager_Load(object sender, EventArgs e)
         {
             cli.tkm = this;
-            
+            this.Text = this.Text + "  - " + cli.Name;
             globals.SendPacket(cli, (byte)globals.PacketType.tasklist, 0, 0, ref r);
         }
 

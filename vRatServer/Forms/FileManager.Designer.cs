@@ -39,6 +39,8 @@ namespace vRatServer.Forms
             this.NameFile = new System.Windows.Forms.ColumnHeader();
             this.SizeFile = new System.Windows.Forms.ColumnHeader();
             this.TypeFile = new System.Windows.Forms.ColumnHeader();
+            this.lastaccess = new System.Windows.Forms.ColumnHeader();
+            this.lastwrite = new System.Windows.Forms.ColumnHeader();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +48,7 @@ namespace vRatServer.Forms
             this.executeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.addToZIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -91,14 +94,16 @@ namespace vRatServer.Forms
             this.FilesList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.NameFile,
             this.SizeFile,
-            this.TypeFile});
+            this.TypeFile,
+            this.lastaccess,
+            this.lastwrite});
             this.FilesList.ContextMenuStrip = this.contextMenuStrip1;
             this.FilesList.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.FilesList.FullRowSelect = true;
             this.FilesList.HideSelection = false;
             this.FilesList.Location = new System.Drawing.Point(0, 50);
             this.FilesList.Name = "FilesList";
-            this.FilesList.Size = new System.Drawing.Size(664, 542);
+            this.FilesList.Size = new System.Drawing.Size(906, 542);
             this.FilesList.TabIndex = 4;
             this.FilesList.UseCompatibleStateImageBehavior = false;
             this.FilesList.View = System.Windows.Forms.View.Details;
@@ -118,7 +123,17 @@ namespace vRatServer.Forms
             // TypeFile
             // 
             this.TypeFile.Text = "Type";
-            this.TypeFile.Width = 200;
+            this.TypeFile.Width = 100;
+            // 
+            // lastaccess
+            // 
+            this.lastaccess.Text = "Last access";
+            this.lastaccess.Width = 200;
+            // 
+            // lastwrite
+            // 
+            this.lastwrite.Text = "Last Write";
+            this.lastwrite.Width = 200;
             // 
             // contextMenuStrip1
             // 
@@ -126,9 +141,10 @@ namespace vRatServer.Forms
             this.deleteToolStripMenuItem,
             this.uploadToolStripMenuItem,
             this.downloadToolStripMenuItem,
-            this.executeToolStripMenuItem});
+            this.executeToolStripMenuItem,
+            this.addToZIPToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
             // 
             // deleteToolStripMenuItem
             // 
@@ -171,14 +187,21 @@ namespace vRatServer.Forms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(664, 53);
+            this.panel1.Size = new System.Drawing.Size(906, 53);
             this.panel1.TabIndex = 5;
+            // 
+            // addToZIPToolStripMenuItem
+            // 
+            this.addToZIPToolStripMenuItem.Name = "addToZIPToolStripMenuItem";
+            this.addToZIPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToZIPToolStripMenuItem.Text = "Add to ZIP";
+            this.addToZIPToolStripMenuItem.Click += new System.EventHandler(this.addToZIPToolStripMenuItem_Click);
             // 
             // FileManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(664, 592);
+            this.ClientSize = new System.Drawing.Size(906, 592);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.FilesList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -211,5 +234,8 @@ namespace vRatServer.Forms
         private System.Windows.Forms.ToolStripMenuItem executeToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ColumnHeader lastaccess;
+        private System.Windows.Forms.ColumnHeader lastwrite;
+        private System.Windows.Forms.ToolStripMenuItem addToZIPToolStripMenuItem;
     }
 }

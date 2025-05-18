@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +13,9 @@ namespace vRatServer
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
+        /// var n = new NotifyIcon();
+        /// 
+                
         [STAThread]
         static void Main()
         {
@@ -20,6 +24,7 @@ namespace vRatServer
             Application.SetCompatibleTextRenderingDefault(false);
             f1 = new MainForm();
             Application.Run(f1);
+
         }
     }
 }

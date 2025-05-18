@@ -64,6 +64,7 @@ namespace vRatServer.Forms
         }
         private void UploadFile_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + "  - " + client.Name;
             label1.Text = filen;
             label2.Text = sent.ToString();
             label3.Text = filesize;

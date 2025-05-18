@@ -14,7 +14,7 @@ namespace vRatServer.Packets
         public TaskManagerPacket(Client client, byte[] data)
         {
 
-            Program.f1.Invoke((MethodInvoker)delegate {
+            Program.f1.BeginInvoke((MethodInvoker)delegate {
                 if (client.tkm == null) { return; }
 
                 client.tkm.AddEntry(data);

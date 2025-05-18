@@ -10,13 +10,22 @@
     <Compile Update="Forms\Builder.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\Clipboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\DownloadFile.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\FileManager.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\InDisconnect.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\PasswordManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\Proxy.cs">

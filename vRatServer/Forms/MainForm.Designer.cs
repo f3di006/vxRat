@@ -50,6 +50,8 @@ namespace vRatServer
             this.powerOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sleepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visitUrlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.onDisconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.passwordManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -78,7 +80,7 @@ namespace vRatServer
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 24);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1156, 340);
+            this.listView1.Size = new System.Drawing.Size(1169, 340);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -101,17 +103,17 @@ namespace vRatServer
             // clientArch
             // 
             this.clientArch.Text = "Arch";
-            this.clientArch.Width = 200;
+            this.clientArch.Width = 100;
             // 
             // clientwVersion
             // 
             this.clientwVersion.Text = "Version";
-            this.clientwVersion.Width = 200;
+            this.clientwVersion.Width = 150;
             // 
             // isadmin
             // 
             this.isadmin.Text = "Privilege";
-            this.isadmin.Width = 250;
+            this.isadmin.Width = 300;
             // 
             // contextMenuStrip1
             // 
@@ -123,15 +125,16 @@ namespace vRatServer
             this.reverseProxyToolStripMenuItem,
             this.disconnectToolStripMenuItem,
             this.uninstallToolStripMenuItem,
-            this.miscellaneousToolStripMenuItem});
+            this.miscellaneousToolStripMenuItem,
+            this.passwordManagerToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 242);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(186, 276);
             // 
             // remoteDesktopToolStripMenuItem
             // 
             this.remoteDesktopToolStripMenuItem.Image = global::vRatServer.Properties.Resources._3641934;
             this.remoteDesktopToolStripMenuItem.Name = "remoteDesktopToolStripMenuItem";
-            this.remoteDesktopToolStripMenuItem.Size = new System.Drawing.Size(172, 34);
+            this.remoteDesktopToolStripMenuItem.Size = new System.Drawing.Size(185, 34);
             this.remoteDesktopToolStripMenuItem.Text = "Remote Desktop";
             this.remoteDesktopToolStripMenuItem.Click += new System.EventHandler(this.remoteDesktopToolStripMenuItem_Click);
             // 
@@ -139,7 +142,7 @@ namespace vRatServer
             // 
             this.fileManagerToolStripMenuItem.Image = global::vRatServer.Properties.Resources._6257190;
             this.fileManagerToolStripMenuItem.Name = "fileManagerToolStripMenuItem";
-            this.fileManagerToolStripMenuItem.Size = new System.Drawing.Size(172, 34);
+            this.fileManagerToolStripMenuItem.Size = new System.Drawing.Size(185, 34);
             this.fileManagerToolStripMenuItem.Text = "File Manager";
             this.fileManagerToolStripMenuItem.Click += new System.EventHandler(this.fileManagerToolStripMenuItem_Click);
             // 
@@ -147,7 +150,7 @@ namespace vRatServer
             // 
             this.reverseShellToolStripMenuItem.Image = global::vRatServer.Properties.Resources._100263_prompt_command_icon;
             this.reverseShellToolStripMenuItem.Name = "reverseShellToolStripMenuItem";
-            this.reverseShellToolStripMenuItem.Size = new System.Drawing.Size(172, 34);
+            this.reverseShellToolStripMenuItem.Size = new System.Drawing.Size(185, 34);
             this.reverseShellToolStripMenuItem.Text = "Reverse Shell";
             this.reverseShellToolStripMenuItem.Click += new System.EventHandler(this.reverseShellToolStripMenuItem_Click);
             // 
@@ -155,7 +158,7 @@ namespace vRatServer
             // 
             this.reverseProxyToolStripMenuItem.Image = global::vRatServer.Properties.Resources._4484570_hosting_link_proxy_server_url_icon;
             this.reverseProxyToolStripMenuItem.Name = "reverseProxyToolStripMenuItem";
-            this.reverseProxyToolStripMenuItem.Size = new System.Drawing.Size(172, 34);
+            this.reverseProxyToolStripMenuItem.Size = new System.Drawing.Size(185, 34);
             this.reverseProxyToolStripMenuItem.Text = "Reverse Proxy";
             this.reverseProxyToolStripMenuItem.Click += new System.EventHandler(this.reverseProxyToolStripMenuItem_Click);
             // 
@@ -163,7 +166,7 @@ namespace vRatServer
             // 
             this.disconnectToolStripMenuItem.Image = global::vRatServer.Properties.Resources._103046_disconnect_icon;
             this.disconnectToolStripMenuItem.Name = "disconnectToolStripMenuItem";
-            this.disconnectToolStripMenuItem.Size = new System.Drawing.Size(172, 34);
+            this.disconnectToolStripMenuItem.Size = new System.Drawing.Size(185, 34);
             this.disconnectToolStripMenuItem.Text = "Disconnect";
             this.disconnectToolStripMenuItem.Click += new System.EventHandler(this.disconnectToolStripMenuItem_Click);
             // 
@@ -171,7 +174,7 @@ namespace vRatServer
             // 
             this.uninstallToolStripMenuItem.Image = global::vRatServer.Properties.Resources._511947_delete_no_off_remove_icon;
             this.uninstallToolStripMenuItem.Name = "uninstallToolStripMenuItem";
-            this.uninstallToolStripMenuItem.Size = new System.Drawing.Size(172, 34);
+            this.uninstallToolStripMenuItem.Size = new System.Drawing.Size(185, 34);
             this.uninstallToolStripMenuItem.Text = "Uninstall";
             this.uninstallToolStripMenuItem.Click += new System.EventHandler(this.uninstallToolStripMenuItem_Click);
             // 
@@ -181,40 +184,56 @@ namespace vRatServer
             this.taskManagerToolStripMenuItem,
             this.powerOffToolStripMenuItem,
             this.sleepToolStripMenuItem,
-            this.visitUrlToolStripMenuItem});
+            this.visitUrlToolStripMenuItem,
+            this.onDisconnectToolStripMenuItem});
             this.miscellaneousToolStripMenuItem.Image = global::vRatServer.Properties.Resources._2644379;
             this.miscellaneousToolStripMenuItem.Name = "miscellaneousToolStripMenuItem";
-            this.miscellaneousToolStripMenuItem.Size = new System.Drawing.Size(172, 34);
+            this.miscellaneousToolStripMenuItem.Size = new System.Drawing.Size(185, 34);
             this.miscellaneousToolStripMenuItem.Text = "Miscellaneous";
             this.miscellaneousToolStripMenuItem.Click += new System.EventHandler(this.miscellaneousToolStripMenuItem_Click);
             // 
             // taskManagerToolStripMenuItem
             // 
             this.taskManagerToolStripMenuItem.Name = "taskManagerToolStripMenuItem";
-            this.taskManagerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.taskManagerToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.taskManagerToolStripMenuItem.Text = "Task Manager";
             this.taskManagerToolStripMenuItem.Click += new System.EventHandler(this.taskManagerToolStripMenuItem_Click);
             // 
             // powerOffToolStripMenuItem
             // 
             this.powerOffToolStripMenuItem.Name = "powerOffToolStripMenuItem";
-            this.powerOffToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.powerOffToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.powerOffToolStripMenuItem.Text = "Power Off";
             this.powerOffToolStripMenuItem.Click += new System.EventHandler(this.powerOffToolStripMenuItem_Click);
             // 
             // sleepToolStripMenuItem
             // 
             this.sleepToolStripMenuItem.Name = "sleepToolStripMenuItem";
-            this.sleepToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sleepToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.sleepToolStripMenuItem.Text = "Sleep";
             this.sleepToolStripMenuItem.Click += new System.EventHandler(this.sleepToolStripMenuItem_Click);
             // 
             // visitUrlToolStripMenuItem
             // 
             this.visitUrlToolStripMenuItem.Name = "visitUrlToolStripMenuItem";
-            this.visitUrlToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.visitUrlToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.visitUrlToolStripMenuItem.Text = "Visit Url";
             this.visitUrlToolStripMenuItem.Click += new System.EventHandler(this.visitUrlToolStripMenuItem_Click);
+            // 
+            // onDisconnectToolStripMenuItem
+            // 
+            this.onDisconnectToolStripMenuItem.Name = "onDisconnectToolStripMenuItem";
+            this.onDisconnectToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.onDisconnectToolStripMenuItem.Text = "OnDisconnect";
+            this.onDisconnectToolStripMenuItem.Click += new System.EventHandler(this.onDisconnectToolStripMenuItem_Click);
+            // 
+            // passwordManagerToolStripMenuItem
+            // 
+            this.passwordManagerToolStripMenuItem.Image = global::vRatServer.Properties.Resources.pngegg;
+            this.passwordManagerToolStripMenuItem.Name = "passwordManagerToolStripMenuItem";
+            this.passwordManagerToolStripMenuItem.Size = new System.Drawing.Size(185, 34);
+            this.passwordManagerToolStripMenuItem.Text = "Password Manager";
+            this.passwordManagerToolStripMenuItem.Click += new System.EventHandler(this.passwordManagerToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -222,7 +241,7 @@ namespace vRatServer
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 364);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1156, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1169, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -241,7 +260,7 @@ namespace vRatServer
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1156, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1169, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -270,14 +289,14 @@ namespace vRatServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1156, 386);
+            this.ClientSize = new System.Drawing.Size(1169, 386);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "vxRat v1.1";
+            this.Text = "vxRat 1.9";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.contextMenuStrip1.ResumeLayout(false);
@@ -317,6 +336,8 @@ namespace vRatServer
         private System.Windows.Forms.ToolStripMenuItem powerOffToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sleepToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visitUrlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem onDisconnectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem passwordManagerToolStripMenuItem;
     }
 }
 
